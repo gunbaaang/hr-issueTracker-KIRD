@@ -1,0 +1,22 @@
+[build]
+  publish = "."
+  command = "echo 'No build step required'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# API 경로를 Function으로 프록시
+[[redirects]]
+  from = "/api/*"
+  to   = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/init"
+  to   = "/.netlify/functions/init-db"
+  status = 200
+
+[dev]
+  port = 8888
+  targetPort = 3000

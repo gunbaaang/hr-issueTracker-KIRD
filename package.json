@@ -1,0 +1,19 @@
+{
+  "name": "review-tracker",
+  "version": "0.2.0",
+  "description": "화면설계서 리뷰 이슈 트래커",
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "@netlify/neon": "^0.1.2"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
