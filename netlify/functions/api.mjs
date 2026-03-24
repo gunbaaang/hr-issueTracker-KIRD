@@ -123,7 +123,7 @@ export default async function handler(req) {
           conditions.push(`(screen_name ILIKE $${n} OR issue ILIKE $${n} OR decision ILIKE $${n} OR fix_dir ILIKE $${n} OR req_no ILIKE $${n} OR menu ILIKE $${n} OR assignee ILIKE $${n})`);
         }
         const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
-        const rows  = await sql(`SELECT * FROM issues ${where} ORDER BY id ASC`, params);
+        const rows  = await sql.query(`SELECT * FROM issues ${where} ORDER BY id ASC`, params);
         return json(rows.map(rowToIssue));
       }
 
@@ -204,7 +204,7 @@ export default async function handler(req) {
         if (reqF)  { params.push(reqF);   conditions.push(`req_no = $${params.length}`); }
         if (asgnF) { params.push(asgnF);  conditions.push(`assignee = $${params.length}`); }
         const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
-        const rows  = await sql(`SELECT * FROM change_log ${where} ORDER BY changed_at DESC LIMIT 200`, params);
+        const rows  = await sql.query(`SELECT * FROM change_log ${where} ORDER BY changed_at DESC LIMIT 200`, params);
         return json(rows.map(rowToLog));
       }
       if (req.method === 'DELETE') {
