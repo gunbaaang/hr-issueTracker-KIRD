@@ -1,6 +1,8 @@
 [build]
   publish = "."
-  command = "echo 'No build step required'"
+  #command = "echo 'No build step required'" / 260324 netlify 배포 안되는 문제로 주석 처리
+  command = "npm install"
+  
 
 [functions]
   directory = "netlify/functions"
